@@ -5,9 +5,10 @@ name = "pypi"
 
 [packages]
 codecov = "*"
-pyupio = "*"
 
 [dev-packages]
+flake8 = "*"
+codecov = "*"
 
 [requires]
 python_version = "3.9"
