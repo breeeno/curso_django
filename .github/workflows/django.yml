@@ -9,9 +9,7 @@ on:
 jobs:
   build:
     env:
-      PIPENV_VENV_IN_PROJECT: 1
-      PIPENV_NO_INHERIT: 1
-      PIPENV_IGNORE_VIRTUALENVS: 1
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     runs-on: ubuntu-latest
 
