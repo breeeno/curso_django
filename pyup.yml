@@ -1,2 +1,5 @@
 schedule: every day
 update: false
+requirements:
+  - Pipfile
+  - Pipfile.lock
