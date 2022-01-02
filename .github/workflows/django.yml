@@ -37,9 +37,8 @@ jobs:
         pipenv install codecov
         pipenv sync -d
         pipenv install --deploy --dev
-
-    - name: Coverage
+    - name: Relatório Coverage
       env:
-        CODECOV_TOKEN: "ab7b75c2-14e0-437a-bd37-a6a834455190"
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
-        codecov
+          codecov
