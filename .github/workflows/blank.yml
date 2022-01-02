@@ -1,5 +1,4 @@
-name: CI
-
+name: Python Aplication
 
 on:
 
@@ -9,13 +8,35 @@ on:
     branches: [ main ]
 
 jobs:
-
   build:
+    env:
+      PIPENV_VENV_IN_PROJECT: 1
+      PIPENV_NO_INHERIT: 1
+      PIPENV_IGNORE_VIRTUALENVS: 1
 
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13.3
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports: ['5432:5432']
+
 
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+            python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install pipenv
+        pipenv sync -d
 
  - name: Posting Coverage
       env:
