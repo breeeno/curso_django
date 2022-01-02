@@ -1,4 +1,4 @@
-# curso_django
+# Projeto em Django
 Criação e desenvolvimento de projeto em cima do framework DJANGO 
 
 Site do curso: https://pythonpro.com.br/
