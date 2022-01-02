@@ -1,5 +1,5 @@
-schedule: every day
-update: false
 requirements:
   - Pipfile
   - Pipfile.lock
+schedule: every day
+update: false
