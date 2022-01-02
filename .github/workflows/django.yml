@@ -37,8 +37,8 @@ jobs:
         pipenv sync -d
         pipenv install --deploy --dev
 
-    - name: Posting Coverage
+    - name: Coverage
       env:
-        super_secret: ${{ secrets.CODECOV_TOKEN }}
+        CODECOV_TOKEN: "ab7b75c2-14e0-437a-bd37-a6a834455190"
       run: |
-        pipenv run codecov
+        codecov
