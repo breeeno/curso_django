@@ -1,7 +1,7 @@
 # Projeto em Django
 Criação e desenvolvimento de projeto em cima do framework DJANGO 
 
-Gestor de depêndencias: pipenv
+Gestor de depêndencias: Pipenv
 
 Aplicação disponível em https://djangoprobreno.herokuapp.com
 
