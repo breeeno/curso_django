@@ -32,7 +32,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pipenv run pytest pypro --cov=pypro
+        pipenv run pytest
 
     - name: Cobertura de testes com codecov
       uses: codecov/codecov-action@v1
