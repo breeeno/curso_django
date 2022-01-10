@@ -1,4 +1,4 @@
-name: Python application
+name: Django application
 
 on:
   push:
@@ -15,14 +15,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:13.3
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        ports: ['5432:5432']
 
     steps:
     - uses: actions/checkout@v2
@@ -37,6 +29,11 @@ jobs:
         pipenv install codecov
         pipenv sync -d
         pipenv install --deploy --dev
+
+    - name: Test with pytest
+      run: |
+        pipenv run pytest pypro --cov=pypro
+
     - name: Cobertura de testes com codecov
       uses: codecov/codecov-action@v1
       with:
