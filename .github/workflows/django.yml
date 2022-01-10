@@ -21,6 +21,7 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.9
+
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
@@ -31,7 +32,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pipenv run pytest
+        pipenv run pytest --cov=pypro
 
     - name: Cobertura de testes com codecov
       uses: codecov/codecov-action@v1
