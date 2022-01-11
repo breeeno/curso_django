@@ -24,7 +24,7 @@ from decouple import config
 SECRET_KEY = 'django-insecure-6)ctw!i=+%$$_ki)si$=j9ivjl+95h+^zg5_=&*)+!+s8!3&3='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
