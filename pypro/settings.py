@@ -138,6 +138,8 @@ if AWS_ACCESS_KEY_ID:
     AWS_PRELOAD_METADATA = True
     AWS_AUTO_CREATE_BUCKET = False
     AWS_QUERYSTRING_AUTH = True
+    COLLECTFAST_ENABLED = True
+    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
     AWS_S3_CUSTOM_DOMAIN = None
     AWS_DEFAULT_ACL = 'private'
 
