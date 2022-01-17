@@ -1,6 +1,8 @@
 DEBUG=False
 SECRET_KEY=defina sua chave secreta
 DATABASE_URL= postgres://postgres:postgres@localhost/testdb
+SENTRY_DSN =
+
 # Configurações do AWS
 AWS_ACESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
