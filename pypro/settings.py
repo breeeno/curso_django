@@ -12,13 +12,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from functools import partial
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from decouple import config, Csv
 import dj_database_url
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-from decouple import config
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -77,6 +76,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pypro.wsgi.application'
 
+# Configuração Django Debug Toolbar
+
+INTERNAL_IPS=config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -129,7 +135,7 @@ STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-AWS_ACCESS_KEY_ID = config('AWS_ACESS_KEY_ID')
+AWS_ACCESS_KEY_ID = config('AWS_ACESS_KEY_ID', default = False)
 
 # STORAGE CONFIGURATION IN S3 AWS
 # -------------------------------------------------------
