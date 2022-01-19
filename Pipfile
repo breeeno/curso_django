@@ -19,7 +19,6 @@ sentry-sdk = "*"
 flake8 = "*"
 codecov = "*"
 pytest-django = "*"
-pytest = "*"
 pytest-cov = "*"
 
 [requires]
