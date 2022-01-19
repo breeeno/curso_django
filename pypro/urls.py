@@ -21,7 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home)
+    path('home', home, name='home')
 ]
 if settings.DEBUG:
     import debug_toolbar
