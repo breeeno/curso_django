@@ -4,7 +4,7 @@ from django.urls import reverse
 
 @pytest.fixture
 def resp(client):
-    resp = client.get(reverse('base:home'))
+    resp = client.get(reverse('home'))
     return resp
 
 def test_status_code(resp):
@@ -14,4 +14,4 @@ def test_title(resp):
     assert_contains(resp, '<title>Python Pro</title>')
 
 def test_home_link(resp):
-    assert_contains(resp, f'href="{reverse("home")}">Python Pro<a/a>')
+    assert_contains(resp, f'href="{reverse("home")}">Python Pro</a>')
