@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'pypro.base',
+    'pypro.aperitivos'
 ]
 
 MIDDLEWARE = [
@@ -132,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 # Configuração de ambiente de desenvolvimento.
-STATIC_URL = 'static/'
+STATIC_URL = 'staticfiles/'
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
@@ -162,7 +163,7 @@ if AWS_ACCESS_KEY_ID:
     # Static Assets
     # ---------------------------------------------------
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
-    STATIC_S3_PATH = 'static'
+    STATIC_S3_PATH = 'staticfiles'
     STATIC_ROOT = f'/{STATIC_S3_PATH}/'
     STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
