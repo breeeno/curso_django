@@ -5,16 +5,22 @@ from django.urls import reverse
 
 @pytest.fixture
 def resp(client):
-    resp = client.get(reverse('base:home'))
-    return resp
+    return client.get(reverse('aperitivos:indice'))
 
 
 def test_status_code(resp):
     assert resp.status_code == 200
 
 
-def test_title(resp):
-    assert_contains(resp, '<title>Python Pro - Home</title>')
+@pytest.mark.parametrize(
+    'titulo',
+    [
+        'Video Aperitivo: Motivação',
+        'Instalação Windows'
+    ]
+)
+def test_title(resp, titulo):
+    assert_contains(resp, titulo)
 
 
 def test_home_link(resp):
