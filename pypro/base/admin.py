@@ -22,6 +22,7 @@ from pypro.base.models import User
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
 
+
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     add_form_template = 'admin/auth/user/add_form.html'
@@ -35,14 +36,14 @@ class UserAdmin(admin.ModelAdmin):
     )
     add_fieldsets = (
         (None, {
-            'classes': ('wide',),
-            'fields': ('first_name','email', 'password1', 'password2'),
+            'classes': ('wide', ),
+            'fields': ('first_name', 'email', 'password1', 'password2'),
         }),
     )
     form = UserChangeForm
     add_form = UserCreationForm
     change_password_form = AdminPasswordChangeForm
-    list_display = ('email', 'first_name','is_staff')
+    list_display = ('email', 'first_name', 'is_staff')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('first_name', 'email')
     ordering = ('first_name',)

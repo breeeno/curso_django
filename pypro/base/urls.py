@@ -1,7 +1,7 @@
 from pypro.base.views import home
 from django.urls import path
 
-app_name='base'
+app_name = 'base'
 urlpatterns = [
     path('', home, name='home'),
 ]

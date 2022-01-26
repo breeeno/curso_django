@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'pypro.wsgi.application'
 
 # Configuração Django Debug Toolbar
 
-INTERNAL_IPS=config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
 if DEBUG:
     INSTALLED_APPS.append('debug_toolbar')
@@ -134,23 +134,20 @@ USE_TZ = True
 
 # Configuração de ambiente de desenvolvimento.
 STATIC_URL = 'staticfiles/'
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-AWS_ACCESS_KEY_ID = config('AWS_ACESS_KEY_ID', default = False)
+AWS_ACCESS_KEY_ID = config('AWS_ACESS_KEY_ID', default=False)
 
 COLLECTFAST_ENABLED = False
-
-
-
 # STORAGE CONFIGURATION IN S3 AWS
 # -------------------------------------------------------
 
 if AWS_ACCESS_KEY_ID:
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400',}
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }
     AWS_PRELOAD_METADATA = True
     AWS_AUTO_CREATE_BUCKET = False
     AWS_QUERYSTRING_AUTH = True
@@ -160,6 +157,7 @@ if AWS_ACCESS_KEY_ID:
     COLLECTFAST_ENABLED = True
 
     AWS_DEFAULT_ACL = 'private'
+
     # Static Assets
     # ---------------------------------------------------
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
@@ -168,7 +166,6 @@ if AWS_ACCESS_KEY_ID:
     STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-
     # Upload Media Assets
     # ---------------------------------------------------
     DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.StaticStorage'
@@ -176,13 +173,11 @@ if AWS_ACCESS_KEY_ID:
     MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
     MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/'
 
-
     INSTALLED_APPS.append('s3_folder_storage')
     INSTALLED_APPS.append('storages')
 
 
-SENTRY_DSN=config('SENTRY_DSN', default= None)
-
+SENTRY_DSN = config('SENTRY_DSN', default=None)
 
 sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()],)
 

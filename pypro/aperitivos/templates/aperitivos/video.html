@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-12">
-                <h1 class="mt-5 mb-4">{{ video.titulo }}</h1>
-                <iframe src="https://player.vimeo.com/video/{{ video.vimeio_id }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                <h1 class="mt-5 mb-4">{{ video.titulo | default:"Faltando título"  }}</h1>
+                <iframe src="https://player.vimeo.com/video/{{ video.vimeio_id  }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 </div>

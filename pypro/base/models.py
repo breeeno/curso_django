@@ -24,6 +24,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
+
     def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, password, **extra_fields)
@@ -49,7 +50,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     Username and password are required. Other fields are optional.
     """
-
 
     first_name = models.CharField(_('first name'), max_length=150, blank=True)
     email = models.EmailField(_('email address'), unique=True)
