@@ -18,4 +18,4 @@ def test_titulo_video(resp):
 
 
 # def test_conteudo_video(resp):
-#     assert_contains(resp, f'<iframe src="https://player.vimeo.com/video/{video.vimeo_id}"')
+#     assert_contains(resp, f'<iframe src="https://www.youtube.com/embed/{video.youtube_id}"')
