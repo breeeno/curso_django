@@ -23,5 +23,13 @@ def test_title(resp, titulo):
     assert_contains(resp, titulo)
 
 
-def test_home_link(resp):
-    assert_contains(resp, f'href="{reverse("base:home")}">Python Pro</a>')
+@pytest.mark.parametrize(
+    'slug',
+    [
+        'motivacao',
+        'instalacao-windows'
+    ]
+)
+def test_link_video(resp, slug):
+    reverse('aperitivos:video', args=(slug,))
+    assert_contains(resp, f'href="/aperitivos/{slug}"')
