@@ -16,5 +16,5 @@ def test_titulo_video(resp):
     assert_contains(resp, '>Video Aperitivo: Motivação</h1>')
 
 
-def test_conteudo_video(resp):
-    assert_contains(resp, f'src="https://www.youtube.com/embed/{video.youtube_id}"')
+# def test_conteudo_video(resp):
+#     assert_contains(resp, f'src="https://www.youtube.com/embed/{video.youtube_id}"')
