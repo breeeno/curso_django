@@ -132,3 +132,6 @@ dmypy.json
 
 # PyCharm
 .idea/*
+
+#postgres files for local development
+.pgdata
