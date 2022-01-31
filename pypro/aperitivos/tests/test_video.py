@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 from pypro.django_assertions import assert_contains
-from pypro.aperitivos.views import video
+from pypro.aperitivos.views import Video
 
 @pytest.fixture
 def resp(client):
@@ -17,4 +17,4 @@ def test_titulo_video(resp):
 
 
 # def test_conteudo_video(resp):
-#     assert_contains(resp, f'src="https://www.youtube.com/embed/{video.youtube_id}"')
+#     assert_contains(resp, f'src="https://www.youtube.com/embed/{Video.youtube_id}"')
