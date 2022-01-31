@@ -33,4 +33,3 @@ def test_title(resp, titulo):
 def test_link_video(resp, slug):
     reverse('aperitivos:video', args=(slug,))
     assert_contains(resp, f'href="/aperitivos/{slug}"')
-
