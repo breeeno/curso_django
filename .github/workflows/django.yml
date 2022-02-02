@@ -2,9 +2,9 @@ name: Django application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ 97 ]
   pull_request:
-    branches: [ main ]
+    branches: [ 97 ]
 
 jobs:
   build:
