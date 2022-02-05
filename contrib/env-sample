@@ -1,6 +1,6 @@
 DEBUG=False
 SECRET_KEY=defina sua chave secreta
-DATABASE_URL=postgres://postgres:postgres@localhost/postgres
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
 SENTRY_DSN =
 
 # Configurações do AWS
