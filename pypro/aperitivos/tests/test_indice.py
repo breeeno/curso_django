@@ -1,10 +1,17 @@
 import pytest
+from model_bakery import baker
+from pypro.aperitivos.models import Video
 from pypro.django_assertions import assert_contains
 from django.urls import reverse
 
 
 @pytest.fixture
-def resp(client):
+def videos(db):
+    return baker.make(Video, 3)
+
+
+@pytest.fixture
+def resp(client, videos):
     return client.get(reverse('aperitivos:indice'))
 
 
@@ -12,24 +19,12 @@ def test_status_code(resp):
     assert resp.status_code == 200
 
 
-@pytest.mark.parametrize(
-    'titulo',
-    [
-        'Video Aperitivo: Motivação',
-        'Instalação Windows'
-    ]
-)
-def test_title(resp, titulo):
-    assert_contains(resp, titulo)
+def test_title(resp, videos):
+    for video in videos:
+        assert_contains(resp, video.titulo)
 
 
-@pytest.mark.parametrize(
-    'slug',
-    [
-        'motivacao',
-        'instalacao-windows'
-    ]
-)
-def test_link_video(resp, slug):
-    reverse('aperitivos:video', args=(slug,))
-    assert_contains(resp, f'href="/aperitivos/{slug}"')
+def test_link_video(resp, videos):
+    for video in videos:
+        video_links = reverse('aperitivos:video', args=(video.slug,))
+        assert_contains(resp, f'href="{video_links}"')
