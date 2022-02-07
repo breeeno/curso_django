@@ -1,6 +1,6 @@
 DEBUG=False
 SECRET_KEY=defina sua chave secreta
-DATABASE_URL=postgres://postgres:postgres@localhost:5432/django
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/cursodjango
 SENTRY_DSN =
 
 # Configurações do AWS
