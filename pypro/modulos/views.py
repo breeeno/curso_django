@@ -8,4 +8,5 @@ def detalhe(request, slug):
     return render(request, 'modulos/modulos_detalhes.html', {'modulo': modulo, 'aulas':aulas})
 
 def aula(request, slug):
-    pass
+    aula = facade.encontrar_aula(slug)
+    return render(request, 'modulos/aula_detalhes.html', {'aula': aula })
