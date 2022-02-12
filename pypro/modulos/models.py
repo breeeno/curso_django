@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from ordered_model.models import OrderedModel
-
+from django.utils.text import slugify
 
 class Modulo(OrderedModel):
     titulo = models.CharField(max_length=64)
@@ -35,3 +35,4 @@ class Aula(OrderedModel):
 
     def get_absolute_url(self):
         return reverse('modulos:aula', kwargs={'slug': self.slug})
+
