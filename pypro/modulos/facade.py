@@ -1,8 +1,11 @@
 from typing import List
+
+from django.db.models import Prefetch
+
 from pypro.modulos.models import Modulo, Aula
 
 
-def listar_modulos_ordenados()-> List[Modulo]:
+def listar_modulos_ordenados() -> List[Modulo]:
     """
     Lista módulos ordenados por títulos
     :return:
@@ -11,7 +14,7 @@ def listar_modulos_ordenados()-> List[Modulo]:
     return list(Modulo.objects.order_by('order').all())
 
 
-def encontrar_modulo(slug:str) -> Modulo:
+def encontrar_modulo(slug: str) -> Modulo:
     return Modulo.objects.get(slug=slug)
 
 
@@ -24,4 +27,7 @@ def encontrar_aula(slug):
 
 
 def listar_modulos_com_aulas():
-    return Modulo.objects.order_by('order').prefetch_related('aula_set').all()
+    aulas_ordenadas = Aula.objects.order_by('order')
+    return Modulo.objects.order_by('order').prefetch_related(
+        Prefetch('aula_set', queryset=aulas_ordenadas, to_attr='aulas')
+    ).all()
