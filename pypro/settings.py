@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'base.user'
 
+LOGIN_REDIRECT_URL = '/modulos/'
 
 # Application definition
 
