@@ -15,11 +15,13 @@ from pathlib import Path
 from decouple import config, Csv
 import dj_database_url
 import sentry_sdk
+from django.conf.global_settings import EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, \
+    EMAIL_USE_SSL, EMAIL_BACKEND
 from sentry_sdk.integrations.django import DjangoIntegration
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -41,6 +43,10 @@ LOGOUT_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
+    'pypro.base',
+    'pypro.aperitivos',
+    'pypro.modulos',
+    'pypro.turmas',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,10 +54,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'collectfast',
     'django.contrib.staticfiles',
-    'pypro.base',
-    'pypro.aperitivos',
-    'pypro.modulos',
-    'pypro.turmas',
     'ordered_model',
     'django_extensions',
 ]
@@ -87,6 +89,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pypro.wsgi.application'
 
+# Configuração de envio de emails
+
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+
+
 # Configuração Django Debug Toolbar
 
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
@@ -103,8 +115,7 @@ parse_database = partial(dj_database_url.parse, conn_max_age=600)
 
 DATABASES = {
     'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)
-    }
-
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -124,7 +135,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -135,7 +145,6 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -184,10 +193,9 @@ if AWS_ACCESS_KEY_ID:
     INSTALLED_APPS.append('s3_folder_storage')
     INSTALLED_APPS.append('storages')
 
-
 SENTRY_DSN = config('SENTRY_DSN', default=None)
 
-sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()],)
+sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()], )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
