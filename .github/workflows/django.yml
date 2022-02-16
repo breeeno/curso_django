@@ -46,7 +46,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pipenv run pytest --no-migrations --cov=pypro/aperitivos/tests
+        pipenv run pytest --no-migrations --cov=pypro
 
     - name: Relatório Coverage
       env:
